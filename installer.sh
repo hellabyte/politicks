@@ -1,4 +1,8 @@
 #!/bin/bash
+## =====================================================================
+# For getting the environment to filter lists
+#
+## =====================================================================
 
 wd=${HOME}/.local/src
 ad=${HOME}/.local/opt/anaconda
@@ -21,9 +25,9 @@ bash "$ai" -b -p "$ad"
 echo export PATH="$ad":"\$PATH" >> $BASH_RC
 # Update environment for script
 export PATH="$ad":"$PATH"
-conda update conda
+conda update conda 
 # Install necessary packages
-conda install numpy scipy pandas matplotlib ipython jupyter
+conda install numpy scipy pandas matplotlib ipython jupyter natsort
 
 printf "\n"
 for k in $(seq 0 5); do
