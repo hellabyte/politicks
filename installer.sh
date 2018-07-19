@@ -27,7 +27,7 @@ echo export PATH="$ad":"\$PATH" >> $BASH_RC
 export PATH="$ad":"$PATH"
 conda update conda 
 # Install necessary packages
-conda install -y numpy scipy pandas matplotlib ipython jupyter natsort xlrd
+conda install -y numpy scipy pandas matplotlib ipython jupyter natsort
 
 printf "\n"
 for k in $(seq 0 5); do
