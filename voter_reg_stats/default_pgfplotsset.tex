@@ -1,0 +1,43 @@
+\usepackage{amsmath,amsfonts,siunitx}
+\usepackage{tikz,pgfplots}
+
+\hoffset=-1in
+\textwidth=18cm
+
+\pagestyle{empty}
+
+\pgfplotsset{
+  compat=newest,
+  every tick label/.append style={
+    font=\normalsize,
+    color=black,
+  },
+  every major tick/.append style={
+    semithick, 
+    color=black,
+  },
+  every minor tick/.append style={
+    semithick, 
+    color=black,
+  },
+  every axis/.append style={
+    axis on top,
+    axis line style=thick,
+    height=8cm,
+    scaled ticks=false,
+    style={
+      font=\normalsize, 
+    },
+    label style={
+      font=\normalsize,
+    },  
+    title style={
+      font=\normalsize
+    },
+    ylabel style={
+      rotate=-90,  
+    },
+    clip=true,
+    line join=round,
+  },
+}

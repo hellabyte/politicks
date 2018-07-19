@@ -1,0 +1,117 @@
+\documentclass{standalone}
+\input{default_pgfplotsset}
+\usepgfplotslibrary{dateplot}
+
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    height=6cm,width=10cm,
+    date coordinates in=x, date ZERO=2016-01-01,
+    title={AZ Cong.~District 4 Active Voter Registrations},
+%   major tick length = 5pt,
+   %ymode=log,
+    xmin=2016-01-01,xmax=2018-07-01,
+    xtick={ 2016-04-01,2016-11-08,2017-04-01,2018-03-01},
+%   minor x tick num=9,
+%   xticklabel style={/pgf/number format/.cd,fixed,zerofill,precision=0},
+    xticklabel style={rotate=-45},
+    %xticklabels={,,},
+    xlabel={Date}, % $t/(2\pi\tau_I)$ $ \omega_f t/(2\pi)$
+    ylabel={Number Registered},
+    ylabel style={
+      xshift= 0pt,
+      yshift= 5pt,
+      rotate= 90,
+    },
+    %ytick={0.20,0.24,0.28},
+    ymin=0e0,ymax=1.9e5,
+    ytick={0,5e4,1e5,1.5e5,2e5},
+    minor y tick num=4,
+%   minor ytick={1e-5,1e-4,1e-3,1e-2,1e-1},
+    yticklabel style={/pgf/number format/.cd,fixed,zerofill,precision=0},
+    legend style={
+      draw=none,
+      fill=none,
+      font=\small,
+      at={
+        (axis cs:2017-12-01,5.0e4),
+      },
+    },
+%   legend pos=south west,
+    legend columns=5,
+    xminorgrids, yminorgrids, zminorgrids,
+    xmajorgrids, ymajorgrids, zmajorgrids,
+    grid style={gray!40},
+    major grid style={dashed,black!30},
+    minor grid style={dotted,black!40},
+  ]
+    \addplot[
+      red,
+      semithick,
+      mark=*,
+      mark options={
+%       line width=0.4pt,
+        mark size=1.5pt,
+        draw=red,
+        fill=red,
+      },
+    ] table[x=date,y=R]{dat/district4_active.csv};
+    \addlegendentry{R}
+
+    \addplot[
+      gray,
+      semithick,
+      mark=*,
+      mark options={
+%       line width=0.4pt,
+        mark size=1.5pt,
+        draw=black,
+        fill=gray,
+      },
+    ] table[x=date,y=O]{dat/district4_active.csv};
+    \addlegendentry{O}
+
+    \addplot[
+      blue,
+      semithick,
+      mark=*,
+      mark options={
+%       line width=0.4pt,
+        mark size=1.5pt,
+        draw=blue,
+        fill=blue,
+      },
+    ] table[x=date,y=D]{dat/district4_active.csv};
+    \addlegendentry{D}
+
+    \addplot[
+      yellow,
+      semithick,
+      mark=*,
+      mark options={
+%       line width=0.4pt,
+        mark size=1.5pt,
+        draw=black,
+        fill=yellow,
+      },
+    ] table[x=date,y=L]{dat/district4_active.csv};
+    \addlegendentry{L}
+
+    \addplot[
+      green,
+      semithick,
+      mark=*,
+      mark options={
+%       line width=0.4pt,
+        mark size=1.5pt,
+        draw=black,
+        fill=green,
+      },
+    ] table[x=date,y=G]{dat/district4_active.csv};
+    \addlegendentry{G}
+
+  \end{axis}
+\end{tikzpicture}
+
+\end{document}
