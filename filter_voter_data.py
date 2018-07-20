@@ -1,5 +1,6 @@
 import pandas as pd
 import sys,os
+import glob
 
 def main(xls_to_filter):
   """
@@ -23,10 +24,22 @@ def main(xls_to_filter):
 
   xls_path     = '/'.join(xls_to_filter.split('/')[:-1])
   xls_prefix   = xls_to_filter.split('/')[-1].split('.')[0]
-  csv_filtered = f'{xls_path:s}{xls_prefix:s}_filtered.csv'
-  df.to_csv(csv_filtered,index=False)
+  xls_filtered = f'{xls_path:s}{xls_prefix:s}_filtered.xls'
+
+  ## Write to Excel
+  # - Do not write indices associated with original dataframe
+  # - Reorder and drop columns
+  # - Rename surviving columns to match mailer format
+  df.to_excel(xls_filtered,
+    index=False,
+    columns=['FirstName','LastName','Address','City','State','Zip5'],
+    header=['First Name','Last Name','Address 1','Address 2','Address 3','Address 4']
+  )
+  # --------------------------------------------------------------------
   return None
 
 if __name__ == '__main__':
-  xls_to_filter = sys.argv[1]
-  main(xls_to_filter)
+  glob_base = sys.argv[1]
+  glob_list = glob.glob(glob_base)
+  for xls_to_filter in glob_list:
+    main(xls_to_filter)
